@@ -20,7 +20,7 @@ var getCityName = function (cityInputEl) {
 
     getCityWeather();
   } else {
-    console.log("bad!")
+    console.log("bad!");
   }
 };
 
@@ -51,8 +51,12 @@ function getCityWeather(cityInputEl) {
     if (response.ok) {
       response.json().then(function (data) {
         console.log(data);
-        checkWeather(data);
-        return data;
+        // getCityCoord();
+        var longitude = data.coord.lon;
+        var latitude = data.coord.lat;
+        console.log(latitude, longitude);
+        getCityCoord();
+        return latitude, longitude;
       });
     } else {
       //display text sorry, city is unavailable
@@ -60,35 +64,40 @@ function getCityWeather(cityInputEl) {
     }
   });
 }
-function getCityCoord(cityInputEl) {
-    var queryURL =
-      "https://api.openweathermap.org/data/2.5/forecast?" +
-      cityInputEl +
-      "&appid=" +
-      APIKey;
-  
-    fetch(queryURL).then(function (response) {
-      if (response.ok) {
-        response.json().then(function (data) {
-          console.log("coordinates" + data);
-          return data;
-        });
-      } else {
-        //display text sorry, city is unavailable
-        console.log("coordinates unavailable");
-      }
-    });
-  }
+function getCityCoord(latitude, longitude) { //is this info actually getting passed?
+  var queryURL =
+    "https://api.openweathermap.org/data/2.5/forecast?lat=" +
+    latitude +
+    "&lon=" +
+    longitude +
+    "&appid=" +
+    APIKey;
+
+  fetch(queryURL).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        console.log("coordinates" + data);
+        return data;
+      });
+    } else {
+      //display text sorry, city is unavailable
+      console.log("coordinates unavailable");
+    }
+  });
+}
 
 function checkWeather(data) {
-document.querySelector("#city-search-display").innerHTML = cityInputEl;
-console.log(data);
+  document.querySelector("#city-search-display").innerHTML = cityInputEl;
+  console.log(data);
   document.querySelector(".temp").innerHTML = data.main.temp;
   document.querySelector(".wind").innerHTML = data.main.humidity;
   document.querySelector(".humidity").innerHTML = data.wind.speed;
 }
 
 //make this be the 5 day forecast one
+//render each card function
+//var today = dayjs(); documnet.querySelector('#1a').text(today.format('MMM D, YYYY'));
+//or will it be available in the data ???
 // var displayForecast = function (data, cityInputEl) {
 //   if (weather.length === 0) {
 //     badData.textContent = "No weather data available now";
@@ -123,4 +132,5 @@ console.log(data);
 //     repoContainerEl.appendChild(repoEl);
 //   }
 // };
+
 submitBtn.addEventListener("click", formSubmitHandler);
