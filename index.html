@@ -21,21 +21,14 @@
   </head>
   <body>
     <header><h1>Weather Dashboard</h1></header>
-    <main class="flex-row justify-space-between">
+    <main class="d-flex flex-wrap justify-space-between">
       <div class="col-12 col-md-4">
         <div class="card">
-          <h3 class="card-header text-uppercase">Search for a city:</h3>
-          <form id="user-form" class="card-body">
-            <label class="form-label" for="city-search-input"></label>
-            <input
-              placeholder="enter city name"
-              id="city-search"
-              type="text"
-              autofocus="true"
-              class="search-input"
-            />
-            <button id="submit-btn" type="submit" class="btn">Search</button>
-          </form>
+            <div class="mb-3">
+                <label for="city-search" class="form-label"><h2>Search by city:</h2></label>
+                <input id="city-search" class="form-control me-2" type="search" placeholder="New York City" aria-label="Search">
+         <button id="submit-btn" type="submit" class="btn">Search</button><span id="no-city"></span>
+        </div></form>
         </div>
         <div class="card">
           <h3 class="card-header text-uppercase">Recent Searches</h3>
@@ -49,21 +42,37 @@
       </div>
       <div class="col-12 col-md-8">
         <h2 class="subtitle">
-          Showing results for: <span id="city-search-input"></span>
+          Showing results for: <span id="city-search-input">XX</span>
         </h2>
-        <div id="weather-container" class="list-group"></div>
-
-        <div class="card" style="width: 18rem">
-          <div class="card-body">
-            <h5 class="card-title">Date</h5>
-            <h6 class="card-subtitle mb-2 text-body-secondary">
-              img of weather
-            </h6>
-            <ul class="card-text">
-              <li>Temp: <span class="temp"></span>_</li>
-              <li>Wind: <span class="wind"></span>_</li>
-              <li>Humidity <span class="humidity">_</span></li>
-            </ul>
+        <div id="weather-container" class="list-group">
+          <div class="card" style="width: 100%">
+            <div class="card-body">
+              <h5 class="card-title">Date</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary">
+                img of weather
+              </h6>
+              <ul class="card-text">
+                <li>Temp: <span class="temp"></span>_</li>
+                <li>Wind: <span class="wind"></span>_</li>
+                <li>Humidity <span class="humidity">_</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <h2>5-Day Forecast:</h2>
+        <div class="forecast-container">
+          <div class="card" style="width: 50%">
+            <div class="card-body">
+              <h5 class="card-title">Date</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary">
+                img of weather
+              </h6>
+              <ul class="card-text">
+                <li>Temp: <span class="temp"></span>_</li>
+                <li>Wind: <span class="wind"></span>_</li>
+                <li>Humidity <span class="humidity">_</span></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -79,5 +88,6 @@
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>
