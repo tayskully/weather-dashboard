@@ -12,14 +12,16 @@ var forecast = document.querySelector("#forecast-container");
 //data======================================================
 var latitude;
 var longitude;
+var desiredCity = cityInputEl.value.trim();
 
 //functions=================================================
 
 function formSubmitHandler(event) {
   event.preventDefault();
-  var desiredCity = cityInputEl.value.trim();
-//   localStorage.setItem(desiredCity);
-//   localStorage.getItem(desiredCity) || "";
+  desiredCity = cityInputEl.value.trim();
+
+  //   localStorage.setItem(desiredCity);
+  //   localStorage.getItem(desiredCity) || "";
 
   if (desiredCity) {
     getCityWeather(desiredCity);
@@ -42,9 +44,10 @@ function getCityWeather(cityInputEl) {
     if (response.ok) {
       response.json().then(function (data) {
         console.log(data);
-        document.querySelector(".city-search-display").innerText =
-          cityInputEl.value;
-          console.log(cityInputEl.value)
+
+        // document.querySelector(".city-search-display").textContent =
+        //   desiredCity;
+        //   console.log(desiredCity)
         // getCityCoord();
         var longitude = data.coord.lon;
         var latitude = data.coord.lat;
@@ -84,9 +87,10 @@ function renderCitySearch(data) {
   var temperatureFahrenheit = ((data.main.temp - 273.15) * 1.8 + 32).toFixed(2);
   var icon = data.weather[0].icon;
   var iconUrl = `https://openweathermap.org/img/w/${icon}.png`;
-  document.querySelector('.city-search-display').innerHTML = `${cityInputEl.value} "<img src= "${iconUrl}" alt= ${data.weather[0]}}>"`
+  document.querySelector(
+    ".city-search-display"
+  ).innerHTML = `${desiredCity} <img src= "${iconUrl}" alt= ${data.weather[0]}>`;
   document.querySelector("#weather-container").classList.remove("hide");
-  document.querySelector(".city-search-display").innerHTML = cityInputEl;
   document.querySelector(".temp").innerHTML = `${temperatureFahrenheit} °F`;
   document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
   document.querySelector(".wind").innerHTML = data.wind.speed + "mph";
