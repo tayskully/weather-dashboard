@@ -18,6 +18,8 @@ var longitude;
 function formSubmitHandler(event) {
   event.preventDefault();
   var desiredCity = cityInputEl.value.trim();
+//   localStorage.setItem(desiredCity);
+//   localStorage.getItem(desiredCity) || "";
 
   if (desiredCity) {
     getCityWeather(desiredCity);
@@ -40,8 +42,9 @@ function getCityWeather(cityInputEl) {
     if (response.ok) {
       response.json().then(function (data) {
         console.log(data);
-        document.querySelector("#city-search-display").textContent =
-          cityInputEl;
+        document.querySelector(".city-search-display").innerText =
+          cityInputEl.value;
+          console.log(cityInputEl.value)
         // getCityCoord();
         var longitude = data.coord.lon;
         var latitude = data.coord.lat;
@@ -79,11 +82,14 @@ function getForecast(latitude, longitude) {
 
 function renderCitySearch(data) {
   var temperatureFahrenheit = ((data.main.temp - 273.15) * 1.8 + 32).toFixed(2);
+  var icon = data.weather[0].icon;
+  var iconUrl = `https://openweathermap.org/img/w/${icon}.png`;
+  document.querySelector('.city-search-display').innerHTML = `${cityInputEl.value} "<img src= "${iconUrl}" alt= ${data.weather[0]}}>"`
   document.querySelector("#weather-container").classList.remove("hide");
-  document.querySelector("#city-search-display").innerHTML = cityInputEl;
+  document.querySelector(".city-search-display").innerHTML = cityInputEl;
   document.querySelector(".temp").innerHTML = `${temperatureFahrenheit} °F`;
-  document.querySelector(".wind").innerHTML = data.main.humidity + "%";
-  document.querySelector(".humidity").innerHTML = data.wind.speed + "mph";
+  document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+  document.querySelector(".wind").innerHTML = data.wind.speed + "mph";
 }
 
 function renderForecast(data) {
@@ -92,7 +98,7 @@ function renderForecast(data) {
     item.dt_txt.includes("12:00:00")
   );
   console.log(forecastData);
-  forecast.innerHTML = "<h2>5-Day Forecast</h2>";
+  forecast.innerHTML = `<h2>5-Day Forecast for ${cityInputEl.value.trim()} </h2>`;
   forecastData.forEach((day) => {
     var date = new Date(day.dt * 1000);
     var icon = day.weather[0].icon;
@@ -101,53 +107,14 @@ function renderForecast(data) {
     var windSpeed = day.wind.speed;
     var iconUrl = `https://openweathermap.org/img/w/${icon}.png`;
     forecast.innerHTML += `<div class="forecast-item">
-                        <p>Date: ${date.toDateString()}</p>
+                        <p>${date.toDateString()}</p>
                         <img src= "${iconUrl}" alt= ${day.weather[0]}}>
-                        <p>Temp: ${temperature}°C</p>
+                        <p>Temp: ${temperature}°F</p>
                         <p>Humidity: ${humidity}%</p>
                         <p>Wind Speed: ${windSpeed} m/s</p>
                         
                     </div>`;
   });
 }
-
-//make this be the 5 day forecast one
-//render each card function
-//var today = dayjs(); documnet.querySelector('#1a').text(today.format('MMM D, YYYY'));
-//or will it be available in the data ???
-// var displayForecast = function (data, cityInputEl) {
-//   if (weather.length === 0) {
-//     badData.textContent = "No weather data available now";
-//     return;
-//   }
-
-//   for (var i = 0; i < repos.length; i++) {
-//     var repoEl = document.createElement("a");
-//     repoEl.classList = "list-item flex-row justify-space-between align-center";
-//     repoEl.setAttribute("href", "./single-repo.html?repo=" + repoName);
-
-//     var titleEl = document.createElement("span");
-//     titleEl.textContent = repoName;
-
-//     repoEl.appendChild(titleEl);
-
-//     var statusEl = document.createElement("span");
-//     statusEl.classList = "flex-row align-center";
-
-//     if (repos[i].open_issues_count > 0) {
-//       statusEl.innerHTML =
-//         "<i class='fas fa-times status-icon icon-danger'></i>" +
-//         repos[i].open_issues_count +
-//         " issue(s)";
-//     } else {
-//       statusEl.innerHTML =
-//         "<i class='fas fa-check-square status-icon icon-success'></i>";
-//     }
-
-//     repoEl.appendChild(statusEl);
-
-//     repoContainerEl.appendChild(repoEl);
-//   }
-// };
 
 submitBtn.addEventListener("click", formSubmitHandler);

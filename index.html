@@ -27,15 +27,24 @@
     <main class="d-flex flex-wrap justify-space-between">
       <div class="col-12 col-md-4">
         <div class="card">
-            <div class="mb-3">
-                <label for="city-search" class="form-label"><h2>Search by city:</h2></label>
-                <input id="city-search" class="form-control me-2" type="search" placeholder="New York, London, München, Venezia" aria-label="Search">
-         <button id="submit-btn" type="submit" class="btn">Search</button><span id="no-city"></span>
-        </div></form>
+          <div class="mb-3">
+            <label for="city-search" class="form-label"
+              ><h2>Search by city:</h2></label
+            >
+            <input
+              id="city-search"
+              class="form-control me-2"
+              type="search"
+              placeholder="New York, London, München, Venezia"
+              aria-label="Search"
+            />
+            <button id="submit-btn" type="submit" class="btn">Search</button
+            ><span id="no-city"></span>
+          </div>
         </div>
         <div class="card">
           <h3 class="card-header text-uppercase">Recent Searches</h3>
-          <div id="language-buttons" class="card-body">
+          <div id="recent-searches" class="card-body">
             <button data-language="javascript" class="btn">
               *recent city from local storage*
             </button>
@@ -45,12 +54,12 @@
       </div>
       <div class="col-12 col-md-8 hide" id="weather-container">
         <h2 class="subtitle">
-          Showing results for: <span id="city-search-display"></span>
+          Showing results for:
         </h2>
         <div class="list-group">
           <div class="card" style="width: 100%">
             <div class="card-body">
-        <h1 class="city-search-display"></h1>
+              <h1><span class="city-search-display"> </span></h1>
               <ul class="card-text">
                 <li>Temp: <span class="temp"></span></li>
                 <li>Wind: <span class="wind"></span></li>
@@ -59,21 +68,14 @@
             </div>
           </div>
         </div>
-       
+        <h2><span class="city-search-display"> </span></h2>
         <div id="forecast-container" class="hide">
-            <span id="forecast-cards"></span>
-            <h2>5-Day Forecast:</h2>
-          <div class="card" style="width: 50px">
+            
+          <span id="forecast-cards" style="width: 50px"></span>
+          <div class="card">
             <div class="card-body">
               <h5 class="card-title">Date</h5>
-              <h6 class="card-subtitle mb-2 text-body-secondary">
-                img of weather
-              </h6>
-              <ul class="card-text">
-                <li>Temp: <span class="temp"></span>_</li>
-                <li>Wind: <span class="wind"></span>_</li>
-                <li>Humidity <span class="humidity">_</span></li>
-              </ul>
+            
             </div>
           </div>
         </div>
