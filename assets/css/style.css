@@ -36,7 +36,7 @@ h6 {
 }
 header {
     font-family: 'Ropa Sans', sans-serif;
-    background-color: var(--main-dark);
+    background-image: linear-gradient(to right, rgb(86, 95, 151) , rgb(234, 234, 183));
     color: var(--font-light);
     text-align: right; 
     padding: 10px 20px 0 0;
@@ -45,3 +45,6 @@ main {
     display: flex;
     flex-direction: row;
 }
+.hide {
+    display: none !important;
+  }

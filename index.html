@@ -9,8 +9,6 @@
       integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
       crossorigin="anonymous"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Ropa+Sans:ital@0;1&display=swap"
       rel="stylesheet"
@@ -31,7 +29,7 @@
         <div class="card">
             <div class="mb-3">
                 <label for="city-search" class="form-label"><h2>Search by city:</h2></label>
-                <input id="city-search" class="form-control me-2" type="search" placeholder="New York City" aria-label="Search">
+                <input id="city-search" class="form-control me-2" type="search" placeholder="New York, London, München, Venezia" aria-label="Search">
          <button id="submit-btn" type="submit" class="btn">Search</button><span id="no-city"></span>
         </div></form>
         </div>
@@ -45,28 +43,27 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-8">
+      <div class="col-12 col-md-8 hide" id="weather-container">
         <h2 class="subtitle">
           Showing results for: <span id="city-search-display"></span>
         </h2>
-        <div id="weather-container" class="list-group">
+        <div class="list-group">
           <div class="card" style="width: 100%">
             <div class="card-body">
-              <h5 class="card-title">Date</h5>
-              <h6 class="card-subtitle mb-2 text-body-secondary">
-                img of weather
-              </h6>
+        <h1 class="city-search-display"></h1>
               <ul class="card-text">
-                <li>Temp: <span class="temp"></span>_</li>
-                <li>Wind: <span class="wind"></span>_</li>
-                <li>Humidity <span class="humidity">_</span></li>
+                <li>Temp: <span class="temp"></span></li>
+                <li>Wind: <span class="wind"></span></li>
+                <li>Humidity <span class="humidity"></span></li>
               </ul>
             </div>
           </div>
         </div>
-        <h2>5-Day Forecast:</h2>
-        <div class="forecast-container">
-          <div class="card" style="width: 50%">
+       
+        <div id="forecast-container" class="hide">
+            <span id="forecast-cards"></span>
+            <h2>5-Day Forecast:</h2>
+          <div class="card" style="width: 50px">
             <div class="card-body">
               <h5 class="card-title">Date</h5>
               <h6 class="card-subtitle mb-2 text-body-secondary">
