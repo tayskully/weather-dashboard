@@ -10,8 +10,8 @@ In order to get the full experience, users must enter in the city of their choic
 
 The interaction may look like the following screenshots:
 
-![screen shot of the weather dashboard in action](./assets/images/screengrab1.png)
-![screenshot of the weather dashboard in action](./assets/images/screengrab2.png)
+![screen shot of the weather dashboard in action](./assets/images/screenshot1.png)
+![screenshot of the weather dashboard in action](./assets/images/screenshot2.png)
 
 ### Credits
 
