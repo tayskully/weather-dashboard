@@ -60,8 +60,8 @@ li {
   padding: 10px;
   font-size: 2rem;
 }
-.card.body{
-    box-shadow: 0 0 .5em rgb(81, 89, 121);
+.card.body {
+  box-shadow: 0 0 0.5em rgb(81, 89, 121);
 }
 #forecast-container {
   display: flex;
@@ -71,7 +71,7 @@ li {
   width: 100%;
   padding: 20px 0 20px 20px;
 }
-.forecast-item  {
+.forecast-item {
   width: 250px;
   background-image: radial-gradient(white, rgb(213, 222, 228));
   text-align: center;
@@ -79,5 +79,9 @@ li {
   border-radius: 10px;
   font-size: 1.5rem;
   margin: 10px;
-  box-shadow: 0 0 .5em rgb(81, 89, 121);
+  box-shadow: 0 0 0.5em rgb(81, 89, 121);
+}
+.past-search-city {
+  font-size: 2rem;
+  background-color: var(--main-light);
 }

@@ -45,8 +45,8 @@
         <div class="card">
           <h3 class="card-header text-uppercase">Recent Searches</h3>
           <div id="recent-searches" class="card-body">
-            <button data-language="javascript" class="btn">
-              *recent city from local storage*
+            <button data-language="javascript" class="btn past-city-search">
+             
             </button>
             <!-- render cities / buttons to look at data again -->
           </div>
@@ -54,7 +54,7 @@
       </div>
       <div class="col-12 col-md-8 hide" id="weather-container">
         <h2 class="subtitle">
-          Showing results for:
+          Today: <span class="date"></span>
         </h2>
         <div class="list-group">
           <div class="card" style="width: 100%">
@@ -87,11 +87,11 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
-    <!-- <script
-      src="https://code.jquery.com/jquery-3.7.1.min.js"
-      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-      crossorigin="anonymous"
-    ></script> -->
+    <script
+    src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+    crossorigin="anonymous"
+  ></script>
     <script src="./assets/js/script.js"></script>
   </body>
 </html>
