@@ -83,5 +83,7 @@ li {
 }
 .past-search-city {
   font-size: 2rem;
-  background-color: var(--main-light);
+  background-color: var(white);
+  box-shadow: 0 0 0.2em rgb(174, 179, 201);
+  border-radius: 10px;
 }

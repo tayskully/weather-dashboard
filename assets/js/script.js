@@ -54,7 +54,7 @@ function addToPastSearch() {
   if (desiredCity) {
     var button = document.createElement("button");
     button.textContent = `${desiredCity}`;
-    button.classList = "past-search-city";
+    button.classList = "past-search-city text-capitalize";
     pastSearches.appendChild(button);
     savePastSearch();
 
