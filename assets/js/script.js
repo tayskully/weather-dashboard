@@ -18,7 +18,6 @@ var desiredCity = "";
 function formSubmitHandler(event) {
   event.preventDefault();
   desiredCity = cityInputEl.value.trim();
-
   //if the city runs the city weather function properly, then clear the entry. if not, then display error message
   if (desiredCity) {
     getCityWeather(desiredCity);
@@ -33,23 +32,10 @@ function formSubmitHandler(event) {
 //saves search history
 function savePastSearch() {
   var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
-
   //add new search to the array
   searchHistory.push(desiredCity);
-
   //save newly updated city to local storage
   localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
-}
-
-//function to add search history to local storage
-function addToPastSearch() {
-  if (desiredCity) {
-    var button = document.createElement("button");
-    button.textContent = `${desiredCity}`;
-    button.classList = "past-search-city";
-    pastSearches.appendChild(button);
-    savePastSearch();
-  }
 }
 
 function renderPastSearches() {
@@ -58,23 +44,37 @@ function renderPastSearches() {
     savedSearches.forEach((city) => {
       addToPastSearch(city);
     });
-  }; 
-//   pastButton.addEventListener("click", (event) => {
-//     if (event.target.classList.contains("past-city-search")) {
-//       var city = event.target.textContent;
-//       getCityWeather(city);
-//     }
-//   });
+  }
 }
 //loads the past searches on initial page load
 renderPastSearches();
+addToPastSearch();
 
+function addToPastSearch() {
+  if (desiredCity) {
+    var button = document.createElement("button");
+    button.textContent = `${desiredCity}`;
+    button.classList = "past-search-city";
+    pastSearches.appendChild(button);
+    savePastSearch();
 
-function getCityWeather(cityInputEl) {
+    var pastButton = document.querySelector(".past-search-city");
+
+    pastButton.addEventListener("click", (event) => {
+      if (event.target.classList.contains("past-search-city")) {
+        var city = event.target.textContent;
+        getCityWeather(city);
+        console.log(city);
+      }
+    });
+  }
+}
+
+function getCityWeather(desiredCity) {
   var APIKey = "91d73ec1749355e3bf23af5b11eb2ac6";
   var queryURL =
     "http://api.openweathermap.org/data/2.5/weather?q=" +
-    cityInputEl +
+    desiredCity +
     "&appid=" +
     APIKey;
 
@@ -157,7 +157,5 @@ function renderForecast(data) {
                     </div>`;
   });
 }
-
-
 
 submitBtn.addEventListener("click", formSubmitHandler);
