@@ -21,6 +21,7 @@ function formSubmitHandler(event) {
   //if the city runs the city weather function properly, then clear the entry. if not, then display error message
   if (desiredCity) {
     getCityWeather(desiredCity);
+    badEntry.textContent = "";
     cityInputEl.value = "";
     return;
   } else if (desiredCity !== "") {
@@ -32,35 +33,33 @@ function formSubmitHandler(event) {
 //saves search history
 function savePastSearch() {
   var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
-  //add new search to the array
-  searchHistory.push(desiredCity);
-  //save newly updated city to local storage
-  localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
-}
+  if (!searchHistory.includes(desiredCity)) {
+    //add new search to the array
+    searchHistory.push(desiredCity);
 
-function renderPastSearches() {
-  var savedSearches = JSON.parse(localStorage.getItem("searchHistory"));
-  if (savedSearches && savedSearches.length > 0) {
-    savedSearches.forEach((city) => {
-      addToPastSearch(city);
-    });
+    //save newly updated city to local storage
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+
+    //call the function that will render the buttons from local storage
+    createButtons();
   }
 }
-//loads the past searches on initial page load
-renderPastSearches();
-addToPastSearch();
 
-function addToPastSearch() {
-  if (desiredCity) {
+createButtons();
+
+function createButtons() {
+  pastSearches.innerHTML = "";
+  var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+  // loop through the searchHistory
+  for (var i = 0; i < searchHistory.length; i++) {
+    // create the buttons and append them to the page
     var button = document.createElement("button");
-    button.textContent = `${desiredCity}`;
+    button.textContent = `${searchHistory[i]}`;
     button.classList = "past-search-city text-capitalize";
     pastSearches.appendChild(button);
-    savePastSearch();
 
-    var pastButton = document.querySelector(".past-search-city");
-
-    pastButton.addEventListener("click", (event) => {
+    // add event listener to the buttons
+    button.addEventListener("click", (event) => {
       if (event.target.classList.contains("past-search-city")) {
         var city = event.target.textContent;
         getCityWeather(city);
@@ -86,7 +85,8 @@ function getCityWeather(desiredCity) {
         var latitude = data.coord.lat;
         getForecast(latitude, longitude);
         renderCitySearch(data);
-        addToPastSearch();
+        // renderPastSearch();
+        savePastSearch();
       });
     } else {
       badEntry.textContent = " * Please enter in a valid city";
@@ -125,7 +125,7 @@ function renderCitySearch(data) {
   var iconUrl = `https://openweathermap.org/img/w/${icon}.png`;
   document.querySelector(
     ".city-search-display"
-  ).innerHTML = `${desiredCity} <img src= "${iconUrl}" alt= ${data.weather[0]}> ${data.weather[0].main}`;
+  ).innerHTML = `${data.name} <img src= "${iconUrl}" alt= ${data.weather[0]}> ${data.weather[0].main}`;
   document.querySelector("#weather-container").classList.remove("hide");
   document.querySelector(".date").innerHTML = `${dayWeek}`;
   document.querySelector(".temp").innerHTML = `${temperatureFahrenheit} °F`;
@@ -139,7 +139,7 @@ function renderForecast(data) {
     item.dt_txt.includes("12:00:00")
   );
   console.log(forecastData);
-  forecast.innerHTML = `<h2>5-Day Forecast for ${desiredCity} </h2>`;
+  forecast.innerHTML = `<h2>5-Day Forecast for ${data.city.name} </h2>`;
   forecastData.forEach((day) => {
     var date = new Date(day.dt * 1000);
     var icon = day.weather[0].icon;
@@ -157,5 +157,5 @@ function renderForecast(data) {
                     </div>`;
   });
 }
-
+//user interactions ==========================
 submitBtn.addEventListener("click", formSubmitHandler);
