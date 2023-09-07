@@ -48,9 +48,11 @@ main {
   display: flex;
   flex-direction: row;
 }
+/* hides the hard coded cards until data is rendered */
 .hide {
   display: none !important;
 }
+/* hard coded city search display */
 ul {
   display: flex;
   justify-content: space-between;
@@ -63,6 +65,7 @@ li {
 .card.body {
   box-shadow: 0 0 0.5em rgb(81, 89, 121);
 }
+/* forecast cards  */
 #forecast-container {
   display: flex;
   flex-wrap: wrap;
@@ -80,6 +83,12 @@ li {
   font-size: 1.5rem;
   margin: 10px;
   box-shadow: 0 0 0.5em rgb(81, 89, 121);
+}
+
+/* rendered past search buttons */
+#recent-searches {
+  display: flex;
+  flex-direction: column;
 }
 .past-search-city {
   font-size: 2rem;

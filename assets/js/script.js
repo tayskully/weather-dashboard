@@ -85,7 +85,6 @@ function getCityWeather(desiredCity) {
         var latitude = data.coord.lat;
         getForecast(latitude, longitude);
         renderCitySearch(data);
-        // renderPastSearch();
         savePastSearch();
       });
     } else {
@@ -157,5 +156,6 @@ function renderForecast(data) {
                     </div>`;
   });
 }
+
 //user interactions ==========================
 submitBtn.addEventListener("click", formSubmitHandler);
