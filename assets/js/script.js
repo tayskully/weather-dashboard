@@ -72,7 +72,7 @@ function createButtons() {
 function getCityWeather(desiredCity) {
   var APIKey = "91d73ec1749355e3bf23af5b11eb2ac6";
   var queryURL =
-    "http://api.openweathermap.org/data/2.5/weather?q=" +
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
     desiredCity +
     "&appid=" +
     APIKey;
